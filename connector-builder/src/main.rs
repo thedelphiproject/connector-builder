@@ -32,15 +32,19 @@ fn get_price_data() -> Result<u64> {
     let resp_json = json::parse(&resp.text()?)?;
     
     if let Some(p) = resp_json[coin1][coin2].as_f64() {
-        println!("{}", p);
-        return Ok(p as u64);
+        let nanoerg_price = (1.0 / p) * NANO_ERG_CONVERSION;
+        println!("Price (Erg): {}", p);
+        println!("Price (NanoErg): {}", nanoerg_price);
+        return Ok(nanoerg_price as u64);
     } else {
         Err(anyhow!("Failed to parse price from json."))
     }
 }
 
 fn generate_current_price(data: u64) -> f64 {
-    return (1.0 / data as f64) * NANO_ERG_CONVERSION;
+    let price: f64 = (1.0 / data as f64) * NANO_ERG_CONVERSION;
+    println!("{}", price);
+    return price;
 }
 
 fn main() {
@@ -52,6 +56,8 @@ fn main() {
     //     get_price_data,
         
     // )
+
+    // connector.run();
 
     let _ = get_price_data();
     let _ = generate_current_price(3);
