@@ -1,13 +1,20 @@
-use anyhow::{anyhow, Result};
+def getRustFileHeader():
+    raw = """use anyhow::{anyhow, Result};
 
 static NANO_ERG_CONVERSION: f64 = 1000000000.0;
 
-fn get_url() -> &'static str {
-    return "https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD";
-}
+"""
+    return raw
+
+def getRustFileUrl(url):
+    raw = "static BASE_URL: &'static str = " + str(url) + ";"
+    return raw
+
+def getRestRustFile():
+    raw = """
 
 fn parse_url(coin: u8) -> String {
-    let url: &str = get_url();
+    let url: &str = BASE_URL;
     if coin == 1 {
         let split = url.split("ids=").collect::<Vec<_>>();
         let substring: &str = split[1];
@@ -26,7 +33,7 @@ fn parse_url(coin: u8) -> String {
 fn get_price_data() -> Result<u64> {
     let coin1: String = parse_url(1);
     let coin2: String = parse_url(2);
-    let url: &str = get_url();
+    let url: &str = BASE_URL;
     
     let resp = reqwest::blocking::Client::new().get(url).send()?;
     let resp_json = json::parse(&resp.text()?)?;
@@ -63,3 +70,21 @@ fn main() {
     let _ = generate_current_price(3);
 
 }
+"""
+    return raw
+
+def getRawCargoTomlFile():
+    raw = """[package]
+name = "connector-builder"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+json            = "0.12.4"
+reqwest         = { version = "0.10.7", features = ["blocking"] }
+anyhow          = "1.0.32"
+openssl = { version = "0.10", features = ["vendored"] }
+"""
+    return raw
