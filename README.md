@@ -4,7 +4,7 @@ Ergo oracle-core connector builder service.
 ### Running 
 
 ```
-python3 main.py
+python3 main.py '"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"'
 ```
 
 Will create a new executable called connector-builder. To run that 

@@ -1,5 +1,6 @@
 from rawStrings import *
 import os
+import sys
 
 def createRustProject():
     os.system('cargo new connector')
@@ -30,8 +31,7 @@ def deleteCargoProject():
     os.system('rm -rf connector/')
 
 def main():
-
-    url = '"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"'
+    url = sys.argv[1]
 
     createRustProject()
     createMainRustFile(url)
