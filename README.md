@@ -1,26 +1,25 @@
-# connector-builder
+# Delphi Project Connector Builder
 Ergo oracle-core connector builder service.
 
-### Running 
+Creates and compiles a connector executable for the Oracle to access the required datapoints.
+
+### Running
 
 ```
 python3 main.py '"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"'
 ```
 
-Will create a new executable called connector-builder. To run that 
+### Output
 
-```
-./connector-builder
-```
+The program will create a new executable called *connector-builder*. This is a program that the Oracle needs in order ot retrived the information to post on chain.
 
-Puts code into new folder called source-code.
+The program also creates a new directory called *templates*. In this directory, there will be two new files: *main.rs* and *Cargo.toml*. This is the source code that the program used to compile a the executable.
 
+### Executable Connector
+- [X] Coingecko ticker URL, eg `https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD`
+- [ ] Number of decimals or conversion factor to turn float price into int.
 
-Given these inputs:
-- Coingecko ticker URL, eg `https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD`
-- Number of decimals or conversion factor to turn float price into int.
-
-Does the following:
+### Connector Builder
 - [X] Generates Rust source for a custom oracle-core connector by adapting the [erg-usd connector](https://github.com/ergoplatform/oracle-core/blob/master/connectors/erg-usd-connector/src/main.rs).
 - [X] Compiles the connector, possibly for different targets (x86, arm).
 - [X] Makes resulting binaries available for download
