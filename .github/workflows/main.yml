@@ -1,0 +1,31 @@
+name: Build Executable
+
+on: 
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'API URL'     
+        required: true
+        default: 'warning'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2
+      - name: setup python
+        uses: actions/setup-python@v2
+        with: 
+          python-version: 3.8
+      - name: execute python script
+        run: python main.py '"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"'
+#       - name: create executable
+#         run: cargo build
+#         working-directory: connector
+      - name: download file
+        uses: actions/upload-artifact@v3
+        with:
+          name: connector-builder
+          path: .
