@@ -20,6 +20,12 @@ def createExecutable():
 def moveExecutable():
     os.system('mv connector/target/debug/connector-builder .')
 
+def putSourceCodeInOwnFolder():
+    os.system('mkdir source-code')
+
+    os.system('mv connector/src/main.rs source-code')
+    os.system('mv connector/Cargo.toml source-code')
+
 def deleteCargoProject():
     os.system('rm -rf connector/')
 
@@ -32,6 +38,7 @@ def main():
     createCargoTomlFile()
     createExecutable()
     moveExecutable()
+    putSourceCodeInOwnFolder()
     deleteCargoProject()
 
 if __name__=="__main__":
