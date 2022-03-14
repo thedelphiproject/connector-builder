@@ -3,10 +3,10 @@ name: Build Executable
 on: 
   workflow_dispatch:
     inputs:
-      logLevel:
+      apiurl:
         description: 'API URL'     
         required: true
-        default: 'warning'
+        default: 'Enter API URL'
 
 jobs:
   build:
@@ -20,10 +20,7 @@ jobs:
         with: 
           python-version: 3.8
       - name: execute python script
-        run: python main.py '"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"'
-#       - name: create executable
-#         run: cargo build
-#         working-directory: connector
+        run: python main.py ${{ github.event.inputs.apiurl }}
       - name: download file
         uses: actions/upload-artifact@v3
         with:
