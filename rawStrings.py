@@ -1,3 +1,6 @@
+import string
+
+
 def getRustFileHeader():
     raw = """use anyhow::{anyhow, Result};
 
@@ -7,7 +10,8 @@ static NANO_ERG_CONVERSION: f64 = 1000000000.0;
     return raw
 
 def getRustFileUrl(url):
-    raw = "static BASE_URL: &'static str = " + str(url) + ";"
+    stringUrl = '"' + str(url) + '"'
+    raw = "static BASE_URL: &'static str = " + stringUrl + ";"
     return raw
 
 def getRestRustFile():

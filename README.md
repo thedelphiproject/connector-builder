@@ -20,7 +20,7 @@ Where $username is your Github username and $token is a Github personal access t
 To run the python program on your own machine, enter:
 
 ```
-python3 main.py '"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"'
+python3 main.py "https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"
 ```
 
 ### Output
