@@ -5,6 +5,20 @@ Creates and compiles a connector executable for the Oracle to access the require
 
 ### Running
 
+To run the Github actions workflow, enter:
+
+```
+curl \
+-u $username:$token \
+-H "Accept: application/vnd.github.v3+json" \
+https://api.github.com/repos/thedelphiproject/connector-builder/actions/workflows/main.yml/dispatches \
+-d '{"ref":"main", "inputs":{"apiurl":"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"}}'
+```
+
+Where $username is your Github username and $token is a Github personal access token.
+
+To run the python program on your own machine, enter:
+
 ```
 python3 main.py '"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"'
 ```
