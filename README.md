@@ -6,7 +6,7 @@ Creates and compiles a connector executable for the Oracle to access the require
 ### Running
 
 ```
-python3 main.py '"https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"'
+python3 main.py "https://api.coingecko.com/api/v3/simple/price?ids=ergo&vs_currencies=USD"
 ```
 
 ### Output
